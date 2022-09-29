@@ -1,0 +1,16 @@
+<appender name="mySplunk" class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+    <url>YOUR SPLUNK HTTP URL</url>
+    <index>INDEX NAME</index>
+    <token>TOKEN</token>
+    <batch_size_count>10</batch_size_count>
+    <disableCertificateValidation>true</disableCertificateValidation>
+    <layout #LAYOUT OF YOU CHOICE# (explanation in next section bel) </layout>
+</appender>
+<logger name="com.mypackage" level="info" additivity="false">
+<appender-ref ref="mySplunk"/>
+</logger>
+<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter" />
+<timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS Z</timestampFormat>
+<appendLineSeparator>true</appendLineSeparator>
+</layout>
